@@ -3,21 +3,21 @@ import json
 
 payload = '''{
   "ref": "refs/heads/master",
-  "before": "568ce0215041fe6042178c15e67c626e7fa0057f",
-  "after": "ab5153a5c2b69ada3dc691e32b60af9912f9ba73",
+  "before": "ab5153a5c2b69ada3dc691e32b60af9912f9ba73",
+  "after": "025efffcdbb84eee44ed36024ba556a5f371d333",
   "created": false,
   "deleted": false,
   "forced": false,
   "base_ref": null,
-  "compare": "https://github.com/troydai/webhooktest/compare/568ce0215041...ab5153a5c2b6",
+  "compare": "https://github.com/troydai/webhooktest/compare/ab5153a5c2b6...025efffcdbb8",
   "commits": [
     {
-      "id": "ab5153a5c2b69ada3dc691e32b60af9912f9ba73",
-      "tree_id": "d33ccff0f09bc39eb0ea04e5ff5396a89b307392",
+      "id": "025efffcdbb84eee44ed36024ba556a5f371d333",
+      "tree_id": "e27e35e37d9dd038537a024f5f6b9cc0b545f7fa",
       "distinct": true,
-      "message": "updatE",
-      "timestamp": "2017-08-10T14:30:07-07:00",
-      "url": "https://github.com/troydai/webhooktest/commit/ab5153a5c2b69ada3dc691e32b60af9912f9ba73",
+      "message": "update",
+      "timestamp": "2017-08-10T14:58:40-07:00",
+      "url": "https://github.com/troydai/webhooktest/commit/025efffcdbb84eee44ed36024ba556a5f371d333",
       "author": {
         "name": "Troy Dai",
         "email": "troy.dai@outlook.com",
@@ -29,24 +29,23 @@ payload = '''{
         "username": "troydai"
       },
       "added": [
-        ".gitignore",
-        "test.py"
+
       ],
       "removed": [
 
       ],
       "modified": [
-
+        "test.py"
       ]
     }
   ],
   "head_commit": {
-    "id": "ab5153a5c2b69ada3dc691e32b60af9912f9ba73",
-    "tree_id": "d33ccff0f09bc39eb0ea04e5ff5396a89b307392",
+    "id": "025efffcdbb84eee44ed36024ba556a5f371d333",
+    "tree_id": "e27e35e37d9dd038537a024f5f6b9cc0b545f7fa",
     "distinct": true,
-    "message": "updatE",
-    "timestamp": "2017-08-10T14:30:07-07:00",
-    "url": "https://github.com/troydai/webhooktest/commit/ab5153a5c2b69ada3dc691e32b60af9912f9ba73",
+    "message": "update",
+    "timestamp": "2017-08-10T14:58:40-07:00",
+    "url": "https://github.com/troydai/webhooktest/commit/025efffcdbb84eee44ed36024ba556a5f371d333",
     "author": {
       "name": "Troy Dai",
       "email": "troy.dai@outlook.com",
@@ -58,14 +57,13 @@ payload = '''{
       "username": "troydai"
     },
     "added": [
-      ".gitignore",
-      "test.py"
+
     ],
     "removed": [
 
     ],
     "modified": [
-
+      "test.py"
     ]
   },
   "repository": {
@@ -135,17 +133,17 @@ payload = '''{
     "releases_url": "https://api.github.com/repos/troydai/webhooktest/releases{/id}",
     "deployments_url": "https://api.github.com/repos/troydai/webhooktest/deployments",
     "created_at": 1502398458,
-    "updated_at": "2017-08-10T20:54:18Z",
-    "pushed_at": 1502400613,
+    "updated_at": "2017-08-10T21:30:14Z",
+    "pushed_at": 1502402326,
     "git_url": "git://github.com/troydai/webhooktest.git",
     "ssh_url": "git@github.com:troydai/webhooktest.git",
     "clone_url": "https://github.com/troydai/webhooktest.git",
     "svn_url": "https://github.com/troydai/webhooktest",
     "homepage": null,
-    "size": 0,
+    "size": 6,
     "stargazers_count": 0,
     "watchers_count": 0,
-    "language": null,
+    "language": "Python",
     "has_issues": true,
     "has_projects": true,
     "has_downloads": true,
@@ -184,14 +182,12 @@ payload = '''{
     "type": "User",
     "site_admin": false
   }
-}
-'''
-payload = json.loads(payload)
+}'''
 
 response = requests.request(
     'POST', 'http://localhost:5000/api/build',
     params={'client_id': 'build-trigger'},
-    headers={'X-Hub-Signature': 'sha1=a1d92fff05297ce9081ae6fd16b9f6058d96e058',
+    headers={'X-Hub-Signature': 'sha1=2f792568de73c7e8b131d33a81f70ddc28eaa009',
              'X-GitHub-Event': 'push'},
-    json=payload)
+    data=json.dumps(json.loads(payload), indent=2))
 print(response)
